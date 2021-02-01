@@ -8,10 +8,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Band> bands = [
-    Band(id: '1',name: 'Metallica', votes: 5),
+    Band(id: '1',name: 'Red Hot Chili Peppers', votes: 5),
     Band(id: '2',name: 'Coldplay', votes: 7),
     Band(id: '3',name: 'Magic', votes: 4),
-    Band(id: '4',name: 'Startrip', votes: 3)
+    Band(id: '4',name: 'Queen', votes: 3)
   ];
 
   @override
@@ -20,16 +20,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('BandNames', style: TextStyle(color: Colors.black87)),
         backgroundColor: Colors.white,
-        elevation: 1,
-      ),
+        elevation: 1),
       body: ListView.builder(
         itemCount: bands.length,
         itemBuilder: (context, i) => _bandTile(bands[i])),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         elevation: 1,
-        onPressed: (){},
-      ),
+        onPressed: (){}),
     );
   }
 
