@@ -38,10 +38,7 @@ class _HomePageState extends State<HomePage> {
     return Dismissible(
       key: Key(band.id),
       direction: DismissDirection.startToEnd,
-      onDismissed: (direction){
-        print('direction: $direction');
-        print('id: ${band.id}');
-      },
+      onDismissed: (direction){},
       background: Container(
         padding: EdgeInsets.only(left: 25),
         color: Colors.red,
@@ -50,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Icon(Icons.delete, color: Colors.white,),
             SizedBox(width: 10),
-            Text('Delete band', style: TextStyle(color: Colors.white),)
+            Text('Delete band', style: TextStyle(color: Colors.white))
           ],
         ),
       ),
