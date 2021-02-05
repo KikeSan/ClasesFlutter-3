@@ -14,6 +14,13 @@ io.on('connection', client => {
     client.on('disconnect', () => {
         console.log('Cliente desconectado!')
     });
+
+    client.on('mensaje',(payload)=>{
+        console.log('Mensaje!!!',payload)
+        io.emit('desde el server',{puerto:3001})
+    })
+
+
 });
 
 const publicPath = path.resolve(__dirname, 'public');

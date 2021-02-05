@@ -16,6 +16,12 @@
     socket.on('disconnect',function(){
         console.log('Perdimos la conexión')
     })
+
+    socket.emit('mensaje',{nombre:'Kike'})
+
+    socket.on('desde el server',function(payload){
+        console.log('Desde el servidor:',payload)
+    })
   </script>
 </body>
 </html>
