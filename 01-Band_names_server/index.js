@@ -5,23 +5,9 @@ require('dotenv').config();
 const app = express();
 
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+module.exports.io = require('socket.io')(server);
 
-// mensajes de sockets
-io.on('connection', client => {
-    console.log('Cliente conectado');
-
-    client.on('disconnect', () => {
-        console.log('Cliente desconectado!')
-    });
-
-    client.on('mensaje',(payload)=>{
-        console.log('Mensaje!!!',payload)
-        io.emit('desde el server',{puerto:3001})
-    })
-
-
-});
+require('./sockets/socket');
 
 const publicPath = path.resolve(__dirname, 'public');
 
