@@ -8,23 +8,25 @@ enum ServerStatus{
 
 class SocketService with ChangeNotifier{
   ServerStatus _serverStatus = ServerStatus.Connecting;
-
-  SocketService(){
-    print('Constructor---');
-    this._initConfig();
-  }
+  get serverStatus => this._serverStatus;
+  SocketService(){ this._initConfig(); }
 
   void _initConfig(){
-    print('Init configggg');
     IO.Socket socket = IO.io('http://192.168.0.18:3001',{
-      'transports':['websocket'],
-      'autoconnect': true
+      'transports': ['websocket'],
+      'autoConnect': true,
     });
-    socket.onConnect((_) {
+    socket.on('connect', (_) {
+      this._serverStatus = ServerStatus.Online;
+      notifyListeners();
       print('connect');
     });
-    //socket.on('connect', (_) => print('connect'));
+    socket.on('disconnect', (_) {
+      this._serverStatus = ServerStatus.Offline;
+      notifyListeners();
+      print('disconnect');
+    });
     //socket.on('event', (data) => print(data));
-    socket.onDisconnect((_) => print('disconnect'));
+    //socket.onDisconnect((_) => print('disconnect'));
   }
 }
