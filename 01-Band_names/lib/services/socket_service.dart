@@ -26,6 +26,7 @@ class SocketService with ChangeNotifier{
       notifyListeners();
       print('disconnect');
     });
+    print('Pasé por los sockets');
     //socket.on('event', (data) => print(data));
     //socket.onDisconnect((_) => print('disconnect'));
   }
