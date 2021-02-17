@@ -14,7 +14,7 @@ class SocketService with ChangeNotifier{
   void _initConfig(){
     IO.Socket socket = IO.io('http://192.168.0.18:3001',{
       'transports': ['websocket'],
-      'autoConnect': true,
+      'autoConnect': true
     });
     socket.on('connect', (_) {
       this._serverStatus = ServerStatus.Online;
@@ -26,6 +26,15 @@ class SocketService with ChangeNotifier{
       notifyListeners();
       print('disconnect');
     });
+
+    socket.on('nuevo-mensaje',(payload){
+      print('nuevo mensaje:');
+      print('nombre: '+payload['nombre']);
+      print('mensaje: '+payload['mensaje']);
+      print(payload.containsKey('mensaje2') ? payload['mensaje2']: 'No hay');
+    });
+
+
     print('Pasé por los sockets');
     //socket.on('event', (data) => print(data));
     //socket.onDisconnect((_) => print('disconnect'));
