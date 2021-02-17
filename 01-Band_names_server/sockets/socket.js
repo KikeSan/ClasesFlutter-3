@@ -12,5 +12,9 @@ io.on('connection', client => {
         io.emit('desde el server',{puerto:3001})
     })
 
+    client.on('emitir-mensaje',(payload)=>{
+        // emite a todos menos al que lo emitió
+        client.broadcast.emit('nuevo-mensaje','HEY!!!!')
+    })
 
 });
